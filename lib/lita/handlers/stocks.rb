@@ -30,7 +30,16 @@ module Lita
       end
 
       def format_response(data)
-        "#{data['name']} (#{data['e']}:#{data['t']}) - #{data['l']} (#{data['c']}, #{data['cp']}%) - 52week high/low: (#{data['hi52']}/#{data['lo52']}) - MktCap: #{data['mc']} - P/E: #{data['pe']}"
+        line = []
+        line << "#{data['name']} (#{data['e']}:#{data['t']})"
+        line << "#{data['l']} (#{data['c']}, #{data['cp']}%)"
+        line << "52week high/low: (#{data['hi52']}/#{data['lo52']})"
+
+        # don't include these sections if they don't exist
+        line << "MktCap: #{data['mc']}" unless data['mc'].empty?
+        line << "P/E: #{data['pe']}" unless data['pe'].empty?
+
+        line.join ' - '
       end
 
 
