@@ -23,4 +23,11 @@ describe Lita::Handlers::Stocks, lita_handler: true do
     expect(replies.last).to_not include("MktCap")
     expect(replies.last).to_not include("P/E")
   end
+
+
+  it "ensures proper encoding" do
+    send_command "stock T"
+    expect(replies.last).to include("AT&T")
+  end
+
 end

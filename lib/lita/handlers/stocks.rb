@@ -1,4 +1,5 @@
 require "lita"
+require "cgi"
 
 module Lita
   module Handlers
@@ -26,7 +27,13 @@ module Lita
       def get_stock_data(symbol)
         resp = http.get("https://www.google.com/finance/info?infotype=infoquoteall&q=#{symbol}")
         raise 'RequestFail' unless resp.status == 200
-        MultiJson.load(resp.body.gsub(/\/\//, ''))[0]
+        body = resp.body.gsub(/\/\//, '')
+
+        # Google sends hex encoded data, we need to fix that
+        (33..47).each do |char|
+          body.gsub!(/\\x#{char.to_s(16)}/, char.chr)
+        end
+        MultiJson.load(body)[0]
       end
 
       def format_response(data)
