@@ -10,4 +10,9 @@ describe Lita::Handlers::Stocks, lita_handler: true do
     expect(replies.last).to include("GOOG")
     expect(replies.last).to include("NASDAQ")
   end
+
+  it "checks an invalid stock" do
+    send_command "stock GOOGFAKE"
+    expect(replies.last).to eq("Sorry, but there was a problem retrieving stock information.")
+  end
 end
