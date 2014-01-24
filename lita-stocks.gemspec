@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "lita-stocks"
-  spec.version       = "0.0.6.1"
+  spec.version       = "0.0.6.2"
   spec.authors       = ["Mitch Dempsey"]
   spec.email         = ["mrdempsey@gmail.com"]
   spec.description   = %q{A Lita handler that displays stock prices}
