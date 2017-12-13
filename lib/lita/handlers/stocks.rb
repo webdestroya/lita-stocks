@@ -20,11 +20,11 @@ module Lita
         response.reply "Sorry, but there was a problem retrieving stock information."
       end
 
-      private 
+      private
 
 
       def get_stock_data(symbol)
-        resp = http.get("https://www.google.com/finance/info?infotype=infoquoteall&q=#{symbol}")
+        resp = http.get("https://finance.google.com/finance?q=#{symbol}&output=json")
         raise 'RequestFail' unless resp.status == 200
         MultiJson.load(clean_response(resp.body))[0]
       end

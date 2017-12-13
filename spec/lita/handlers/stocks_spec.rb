@@ -6,7 +6,7 @@ describe Lita::Handlers::Stocks, lita_handler: true do
 
   it "checks default stock" do
     send_command "stock GOOG"
-    expect(replies.last).to include("Google Inc")
+    expect(replies.last).to include("Alphabet Inc")
     expect(replies.last).to include("GOOG")
     expect(replies.last).to include("NASDAQ")
     expect(replies.last).to include("MktCap")
